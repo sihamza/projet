@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="pro.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo"><span>site</span>football</a>
+        <ul class="navbar">
+            <li><a href="projet1.html">Accueil</a></li>
+            <li><a href="projet2.html">information</a></li>
+            <li><a href="projet3.html">se connecter</a></li>
+
+        </ul>
+    </header>
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center; /* Centre le contenu horizontalement */
+          align-items: center; /* Centre le contenu verticalement */
+          height: 100vh; /* Prend 100% de la hauteur de la fenêtre */
+        }
+    
+        .img-slider {
+          text-align: center; /* Centre les éléments enfants horizontalement */
+        }
+    
+        .slide img {
+          max-width: 100%; /* Pour que les images s'adaptent à la largeur du conteneur */
+        }
+      </style>
+    <div class="img-slider">
+        <div class="slide active">
+          <img src="https://i.pinimg.com/236x/74/e7/65/74e7657eaaa4019e5587239ff6c97c0f.jpg" alt="">
+          
+        </div>
+        <div class="slide">
+          <img src="https://i.pinimg.com/236x/30/87/73/30877353d6d34906a89c821f85f0e832.jpg" alt="">
+          
+        </div>
+        <div class="navigation">
+          <div class="btn active"></div>
+          <div class="btn"></div>
+          
+        </div>
+      </div>
+  
+      <script type="text/javascript">
+      var slides = document.querySelectorAll('.slide');
+      var btns = document.querySelectorAll('.btn');
+      let currentSlide = 1;
+      var manualNav = function(manual){
+        slides.forEach((slide) => {
+          slide.classList.remove('active');
+  
+          btns.forEach((btn) => {
+            btn.classList.remove('active');
+          });
+        });
+  
+        slides[manual].classList.add('active');
+        btns[manual].classList.add('active');
+      }
+  
+      btns.forEach((btn, i) => {
+        btn.addEventListener("click", () => {
+          manualNav(i);
+          currentSlide = i;
+        });
+      });
+  
+      var repeat = function(activeClass){
+        let active = document.getElementsByClassName('active');
+        let i = 1;
+  
+        var repeater = () => {
+          setTimeout(function(){
+            [...active].forEach((activeSlide) => {
+              activeSlide.classList.remove('active');
+            });
+  
+          slides[i].classList.add('active');
+          btns[i].classList.add('active');
+          i++;
+  
+          if(slides.length == i){
+            i = 0;
+          }
+          if(i >= slides.length){
+            return;
+          }
+          repeater();
+        }, 10000);
+        }
+        repeater();
+      }
+      repeat();
+      </script>
+    </body>
+    </html>
+    
